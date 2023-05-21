@@ -15,7 +15,7 @@ interface INotificationProps {
   extraInfoText: string;
   icon: string;
   image: string;
-  iconLarge: string;
+  iconLarge?: string;
 }
 
 const Notification: React.FC<INotificationProps> = ({
