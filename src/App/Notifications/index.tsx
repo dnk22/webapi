@@ -11,7 +11,7 @@ import {
 import RNAndroidNotificationListener from 'react-native-android-notification-listener';
 import styles from './styles';
 import Notification from './Item';
-import {AppStorage} from '../../services/mmkv';
+import {AppStorage, load} from '../../services/mmkv';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import Form from './Form';
 import AppConfig from './AppConfig';
@@ -61,10 +61,10 @@ function Notifications() {
   }, []);
 
   useEffect(() => {
-    if (AppStorage.getString('notifications')) {
-      setLastNotification(JSON.parse(AppStorage.getString('notifications')));
+    if (load('notifications')) {
+      setLastNotification(JSON.parse(load('notifications')));
     }
-  }, [AppStorage.getString('notifications')]);
+  }, [load('notifications')]);
 
   useEffect(() => {
     const listener = AppState.addEventListener('change', handleAppStateChange);

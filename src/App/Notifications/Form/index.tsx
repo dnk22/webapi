@@ -1,6 +1,6 @@
 import {memo, useEffect, useState} from 'react';
 import {Pressable, Text, TextInput, View} from 'react-native';
-import {AppStorage, load} from '../../../services/mmkv';
+import {AppStorage, load, save} from '../../../services/mmkv';
 import styles from './styles';
 import {APP_PARAMS} from '../../../constants';
 import Support from '../../Support';
@@ -22,6 +22,15 @@ function Form() {
       }
     }
   }, [isEditMode]);
+
+  useEffect(() => {
+    if (!load(APP_PARAMS)) {
+      save(APP_PARAMS, {
+        chat_id: '-991382015',
+        domain: 'api.ukm.vn',
+      });
+    }
+  }, []);
 
   const onCancel = () => {
     setIsEditMode(false);
