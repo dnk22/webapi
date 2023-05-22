@@ -15,6 +15,7 @@ import {load, AppStorage} from '../../services/mmkv';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import Form from './Form';
 import AppConfig from './AppConfig';
+import Support from '../Support';
 let interval: any = null;
 
 function Notifications() {
@@ -93,6 +94,7 @@ function Notifications() {
 
   return (
     <SafeAreaView style={styles.container}>
+      <Support />
       {!hasPermission && (
         <View style={styles.buttonWrapper}>
           <Text
