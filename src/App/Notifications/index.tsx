@@ -51,7 +51,10 @@ function Notifications() {
 
   useEffect(() => {
     const listener = AppStorage.addOnValueChangedListener(changedKey => {
-      setLastNotification(JSON.parse(load('notifications')));
+      const notifications = AppStorage.getString('notifications');
+      if (notifications) {
+        setLastNotification(JSON.parse(notifications));
+      }
     });
     return () => {
       listener.remove();
@@ -59,8 +62,10 @@ function Notifications() {
   }, []);
 
   useEffect(() => {
-    setLastNotification(JSON.parse(load('notifications') || ''));
-  }, [load('notifications')]);
+    if (AppStorage.getString('notifications')) {
+      setLastNotification(JSON.parse(AppStorage.getString('notifications')));
+    }
+  }, [AppStorage.getString('notifications')]);
 
   // useEffect(() => {
   //   clearInterval(interval);

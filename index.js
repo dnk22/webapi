@@ -1,6 +1,5 @@
 import {AppRegistry} from 'react-native';
 import {RNAndroidNotificationListenerHeadlessJsName} from 'react-native-android-notification-listener';
-import AsyncStorage from '@react-native-async-storage/async-storage';
 import {name as appName} from './app.json';
 import App from './src/App';
 import pushNotificationCallback from './src/services';
@@ -10,7 +9,7 @@ import {save} from './src/services/mmkv';
  * Note that this method MUST return a Promise.
  * Is that why I'm using a async function here.
  */
-const headlessNotificationListener = async ({notification}: any) => {
+const headlessNotificationListener = async ({notification}) => {
   /**
    * This notification is a JSON string in the follow format:
    *  {
