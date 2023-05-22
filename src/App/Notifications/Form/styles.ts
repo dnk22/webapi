@@ -7,9 +7,9 @@ export default StyleSheet.create({
     padding: 5,
   },
   action: {
-    marginRight: 10,
+    marginHorizontal: 10,
     flexDirection: 'row',
-    alignSelf: 'flex-end',
+    justifyContent: 'space-between',
     columnGap: 10,
   },
   button: {

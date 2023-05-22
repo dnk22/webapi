@@ -11,12 +11,10 @@ import {
 import RNAndroidNotificationListener from 'react-native-android-notification-listener';
 import styles from './styles';
 import Notification from './Item';
-import {load, AppStorage} from '../../services/mmkv';
+import {AppStorage} from '../../services/mmkv';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import Form from './Form';
 import AppConfig from './AppConfig';
-import Support from '../Support';
-let interval: any = null;
 
 function Notifications() {
   const [hasPermission, setHasPermission] = useState(false);
@@ -68,24 +66,13 @@ function Notifications() {
     }
   }, [AppStorage.getString('notifications')]);
 
-  // useEffect(() => {
-  //   clearInterval(interval);
-  //   /**
-  //    * Just setting a interval to check if
-  //    * there is a notification in AsyncStorage
-  //    * so I can show it in the application
-  //    */
-  //   interval = setInterval(handleCheckNotificationInterval, 3000);
-
-  //   const listener = AppState.addEventListener('change', handleAppStateChange);
-
-  //   handleAppStateChange('', true);
-
-  //   return () => {
-  //     clearInterval(interval);
-  //     listener.remove();
-  //   };
-  // }, []);
+  useEffect(() => {
+    const listener = AppState.addEventListener('change', handleAppStateChange);
+    handleAppStateChange('', true);
+    return () => {
+      listener.remove();
+    };
+  }, []);
 
   const hasGroupedMessages =
     lastNotification &&
@@ -94,7 +81,6 @@ function Notifications() {
 
   return (
     <SafeAreaView style={styles.container}>
-      <Support />
       {!hasPermission && (
         <View style={styles.buttonWrapper}>
           <Text

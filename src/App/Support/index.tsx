@@ -1,13 +1,5 @@
 import {useState} from 'react';
-import {
-  Text,
-  View,
-  StyleSheet,
-  Image,
-  Linking,
-  Pressable,
-  Alert,
-} from 'react-native';
+import {Text, View, StyleSheet, Image, Linking, Pressable} from 'react-native';
 import Modal from 'react-native-modal';
 
 const telegramURL = 'https://t.me/selltool';
@@ -20,25 +12,21 @@ export default function Support() {
       console.log('Fail to open app');
     });
   };
+
+  const onToggleModal = () => {
+    setIsShowModal(!isShowModal);
+  };
   return (
-    <View
-      style={{
-        flex: 1,
-        justifyContent: 'center',
-        alignItems: 'center',
-        backgroundColor: 'gray',
-      }}>
-      <Pressable
-        style={styles.support}
-        onPress={() => setIsShowModal(!isShowModal)}>
+    <>
+      <Pressable style={styles.support} onPress={onToggleModal}>
         <Image
           source={require('./support.png')}
-          style={{width: 40, height: 40}}
+          style={{width: 20, height: 20}}
         />
       </Pressable>
       <Modal
         isVisible={isShowModal}
-        onBackdropPress={() => setIsShowModal(!isShowModal)}
+        onBackdropPress={onToggleModal}
         style={{alignItems: 'center'}}>
         <View style={styles.container}>
           <Text style={styles.title}>Cần hỗ trợ?</Text>
@@ -63,7 +51,7 @@ export default function Support() {
           </View>
         </View>
       </Modal>
-    </View>
+    </>
   );
 }
 
@@ -99,10 +87,9 @@ const styles = StyleSheet.create({
     marginTop: 10,
   },
   support: {
-    position: 'absolute',
+    width: 40,
+    height: 40,
     backgroundColor: 'white',
-    bottom: 100,
-    right: 50,
     borderRadius: 50,
     padding: 15,
     justifyContent: 'center',

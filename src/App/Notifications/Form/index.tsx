@@ -3,6 +3,7 @@ import {Pressable, Text, TextInput, View} from 'react-native';
 import {AppStorage, load} from '../../../services/mmkv';
 import styles from './styles';
 import {APP_PARAMS} from '../../../constants';
+import Support from '../../Support';
 
 function Form() {
   const [isEditMode, setIsEditMode] = useState(false);
@@ -70,14 +71,17 @@ function Form() {
         }}
       />
       <View style={styles.action}>
-        {isEditMode && (
-          <Pressable style={styles.button} onPress={onCancel}>
-            <Text>Hủy</Text>
+        <Support />
+        <>
+          {isEditMode && (
+            <Pressable style={styles.button} onPress={onCancel}>
+              <Text>Hủy</Text>
+            </Pressable>
+          )}
+          <Pressable style={[styles.button, styles.primary]} onPress={onEdit}>
+            <Text style={{color: 'white'}}>{isEditMode ? 'Lưu' : 'Sửa'}</Text>
           </Pressable>
-        )}
-        <Pressable style={[styles.button, styles.primary]} onPress={onEdit}>
-          <Text style={{color: 'white'}}>{isEditMode ? 'Lưu' : 'Sửa'}</Text>
-        </Pressable>
+        </>
       </View>
     </View>
   );
