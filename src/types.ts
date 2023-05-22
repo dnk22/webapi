@@ -14,3 +14,8 @@ export interface INotificationProps {
   image: string;
   iconLarge: string;
 }
+
+export type ItemProps = {
+  packageName: string;
+  appName: string;
+};

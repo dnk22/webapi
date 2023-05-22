@@ -2,7 +2,6 @@ import React, {useState, useEffect} from 'react';
 import {
   SafeAreaView,
   Text,
-  Image,
   Button,
   AppState,
   View,
@@ -10,13 +9,16 @@ import {
   ScrollView,
 } from 'react-native';
 import RNAndroidNotificationListener from 'react-native-android-notification-listener';
-import AsyncStorage from '@react-native-async-storage/async-storage';
 import styles from './styles';
 import Notification from './Item';
+import {load, AppStorage} from '../../services/mmkv';
+import AsyncStorage from '@react-native-async-storage/async-storage';
+import Form from './Form';
+import AppConfig from './AppConfig';
 let interval: any = null;
 
 function Notifications() {
-  const [hasPermission, setHasPermission] = useState(false);
+  const [hasPermission, setHasPermission] = useState(true);
   const [lastNotification, setLastNotification] = useState<any>(null);
 
   const handleOnPressPermissionButton = async () => {
@@ -38,7 +40,6 @@ function Notifications() {
     const lastStoredNotification = await AsyncStorage.getItem(
       '@lastNotification',
     );
-
     if (lastStoredNotification) {
       /**
        * As the notification is a JSON string,
@@ -49,23 +50,36 @@ function Notifications() {
   };
 
   useEffect(() => {
-    clearInterval(interval);
-    /**
-     * Just setting a interval to check if
-     * there is a notification in AsyncStorage
-     * so I can show it in the application
-     */
-    interval = setInterval(handleCheckNotificationInterval, 3000);
-
-    const listener = AppState.addEventListener('change', handleAppStateChange);
-
-    handleAppStateChange('', true);
-
+    const listener = AppStorage.addOnValueChangedListener(changedKey => {
+      setLastNotification(JSON.parse(load('notifications')));
+    });
     return () => {
-      clearInterval(interval);
       listener.remove();
     };
   }, []);
+
+  useEffect(() => {
+    setLastNotification(JSON.parse(load('notifications') || ''));
+  }, [load('notifications')]);
+
+  // useEffect(() => {
+  //   clearInterval(interval);
+  //   /**
+  //    * Just setting a interval to check if
+  //    * there is a notification in AsyncStorage
+  //    * so I can show it in the application
+  //    */
+  //   interval = setInterval(handleCheckNotificationInterval, 3000);
+
+  //   const listener = AppState.addEventListener('change', handleAppStateChange);
+
+  //   handleAppStateChange('', true);
+
+  //   return () => {
+  //     clearInterval(interval);
+  //     listener.remove();
+  //   };
+  // }, []);
 
   const hasGroupedMessages =
     lastNotification &&
@@ -92,28 +106,27 @@ function Notifications() {
           />
         </View>
       )}
-      <View style={styles.appConfig}>
-        <Text style={styles.appViewTitle}>Chọn app muốn nhận thông báo</Text>
-        <View style={styles.appView}>
+      <Form />
+      <AppConfig />
+      <>
+        <View style={styles.notificationsWrapper}>
+          <Text>Thông báo gần đây</Text>
+          {lastNotification && !hasGroupedMessages && (
+            <ScrollView style={styles.scrollView}>
+              <Notification {...lastNotification} />
+            </ScrollView>
+          )}
+          {lastNotification && hasGroupedMessages && (
+            <FlatList
+              data={lastNotification.groupedMessages}
+              keyExtractor={(_, index) => index.toString()}
+              renderItem={({item}) => (
+                <Notification app={lastNotification.app} {...item} />
+              )}
+            />
+          )}
         </View>
-      </View>
-      <View style={styles.notificationsWrapper}>
-        <Text>Thông báo gần đây</Text>
-        {lastNotification && !hasGroupedMessages && (
-          <ScrollView style={styles.scrollView}>
-            <Notification {...lastNotification} />
-          </ScrollView>
-        )}
-        {lastNotification && hasGroupedMessages && (
-          <FlatList
-            data={lastNotification.groupedMessages}
-            keyExtractor={(_, index) => index.toString()}
-            renderItem={({item}) => (
-              <Notification app={lastNotification.app} {...item} />
-            )}
-          />
-        )}
-      </View>
+      </>
     </SafeAreaView>
   );
 }

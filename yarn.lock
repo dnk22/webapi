@@ -1424,6 +1424,11 @@
   dependencies:
     merge-options "^3.0.4"
 
+"@react-native-community/checkbox@^0.5.15":
+  version "0.5.15"
+  resolved "https://registry.yarnpkg.com/@react-native-community/checkbox/-/checkbox-0.5.15.tgz#783255d0886e3eb93fe42f0cef22aeefb8b596a5"
+  integrity sha512-cdg/P4pF8CXd5+6MBIl2luihFTzjfIcKIEVRnF1wgoNoItRVQlyulWYJEPvL2OmdAYTaBsZTXUIdcOkGqpxLZg==
+
 "@react-native-community/cli-clean@^10.0.0":
   version "10.0.0"
   resolved "https://registry.yarnpkg.com/@react-native-community/cli-clean/-/cli-clean-10.0.0.tgz#09cc4c63116e81d3765ffedecc38387bcc7b4483"
@@ -5877,7 +5882,7 @@ prompts@^2.0.1, prompts@^2.4.0:
     kleur "^3.0.3"
     sisteransi "^1.0.5"
 
-prop-types@*, prop-types@^15.8.1:
+prop-types@*, prop-types@^15.6.2, prop-types@^15.7.2, prop-types@^15.8.1:
   version "15.8.1"
   resolved "https://registry.yarnpkg.com/prop-types/-/prop-types-15.8.1.tgz#67d87bf1a694f48435cf332c24af10214a3140b5"
   integrity sha512-oj87CgZICdulUohogVAR7AjlC0327U4el4L6eAvOqCeudMDVU0NThNaV+b9Df4dXgSP1gXMTnPdhfe/2qDH5cg==
@@ -5957,6 +5962,13 @@ react-native-android-notification-listener@^5.0.1:
   resolved "https://registry.yarnpkg.com/react-native-android-notification-listener/-/react-native-android-notification-listener-5.0.1.tgz#2efcfc36329f559f44f13e63e2cdd3320478ae6d"
   integrity sha512-h36do70QKSSLY6b0LpYjcTLITE/x8yOg0JKCayt1DQvbQCnjwUv9VWCLhuY8NtCKbJ/xTezmPRYk20ZyyNdz9w==
 
+react-native-animatable@1.3.3:
+  version "1.3.3"
+  resolved "https://registry.yarnpkg.com/react-native-animatable/-/react-native-animatable-1.3.3.tgz#a13a4af8258e3bb14d0a9d839917e9bb9274ec8a"
+  integrity sha512-2ckIxZQAsvWn25Ho+DK3d1mXIgj7tITkrS4pYDvx96WyOttSvzzFeQnM2od0+FUMzILbdHDsDEqZvnz1DYNQ1w==
+  dependencies:
+    prop-types "^15.7.2"
+
 react-native-codegen@^0.71.3:
   version "0.71.3"
   resolved "https://registry.yarnpkg.com/react-native-codegen/-/react-native-codegen-0.71.3.tgz#75fbc591819050791319ebdb9fe341ee4df5c288"
@@ -5976,6 +5988,29 @@ react-native-image-picker@^5.3.1:
   version "5.3.1"
   resolved "https://registry.yarnpkg.com/react-native-image-picker/-/react-native-image-picker-5.3.1.tgz#836ab13c228174728a0bd68293b27dc5e1affa0f"
   integrity sha512-zRCjtlE3KOeaWDM8gXzTwXfvo3ZeF2XMkHceU7CVCtKRleKxna/E4XWIPu/lXO2qlMdnSx1WvfPSbqzAX0qxpA==
+
+react-native-installed-application@^1.0.6:
+  version "1.0.6"
+  resolved "https://registry.yarnpkg.com/react-native-installed-application/-/react-native-installed-application-1.0.6.tgz#1b4522cfe31962dd4eb6977c2b8d780efd94b1e4"
+  integrity sha512-eZzJubWXeP4WXLrN8xbd1EThd5tSj4OugPV11syqCI/8IoNa/rXGMGroVqQnuYUGgT8bRK+6rqNMZ2LRn3st0Q==
+
+react-native-launcher-kit@^1.0.4:
+  version "1.0.4"
+  resolved "https://registry.yarnpkg.com/react-native-launcher-kit/-/react-native-launcher-kit-1.0.4.tgz#5c35469189825f3e04fbf5a62edf226be4735667"
+  integrity sha512-Tt3wt8eHPQ/3dcGsBMB4dXfTiYdHkyvnwmS/guVh/UrIl1wlX+mZjfKSc87yj3ttUv6UQXjOuX9D2Lk5naqJIQ==
+
+react-native-mmkv@^2.8.0:
+  version "2.8.0"
+  resolved "https://registry.yarnpkg.com/react-native-mmkv/-/react-native-mmkv-2.8.0.tgz#328318256eb50f0b87826edceaff4b1cd70ba957"
+  integrity sha512-sfI2uzr5UCz7jS6QxIWnC7AbIuoIw9T7hDtsw0ohSlIdCABPoORPu8xpOSZN2bMkK7Z7sMQwLeP73uBXu0A3jw==
+
+react-native-modal@^13.0.1:
+  version "13.0.1"
+  resolved "https://registry.yarnpkg.com/react-native-modal/-/react-native-modal-13.0.1.tgz#691f1e646abb96fa82c1788bf18a16d585da37cd"
+  integrity sha512-UB+mjmUtf+miaG/sDhOikRfBOv0gJdBU2ZE1HtFWp6UixW9jCk/bhGdHUgmZljbPpp0RaO/6YiMmQSSK3kkMaw==
+  dependencies:
+    prop-types "^15.6.2"
+    react-native-animatable "1.3.3"
 
 react-native-safe-area-context@^4.5.3:
   version "4.5.3"

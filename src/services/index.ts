@@ -1,24 +1,27 @@
-import axios from 'axios';
-import {INotificationProps} from '../types';
+import {load} from './mmkv';
+import {APP_PARAMS} from '../constants';
+import axiosClient from './axios';
 
-export default async function pushNotificationCallback(
-  notification: INotificationProps,
-) {
-  console.log('call ');
-  delete notification.iconLarge;
-  delete notification.icon;
-  delete notification.image;
-  try {
-    const response = await axios.post(
-      `https://api.ukm.vn/api/callback/appnotification`,
-      notification,
-    );
-    return response;
-  } catch (error) {
-    const response = await axios.post(
-      `https://api.ukm.vn/api/callback/appnotification`,
-      error,
-    );
-    return response;
+export default async function pushNotificationCallback() {
+  const lastStoredNotification = load('notifications');
+  if (lastStoredNotification) {
+    const notification = JSON.parse(lastStoredNotification);
+
+    delete notification.iconLarge;
+    delete notification.icon;
+    delete notification.image;
+
+    const apiParams = load(APP_PARAMS);
+    const appConfig = load(notification.app);
+    if (apiParams && appConfig && !appConfig.isNoti) return;
+    try {
+      const response = await axiosClient.post(
+        `https://${apiParams.domain}/api/callback/appnotification?chat_id="${apiParams.chat_id}"&username=${appConfig.username}`,
+        notification,
+      );
+      return response;
+    } catch (error) {
+      console.log(error);
+    }
   }
 }

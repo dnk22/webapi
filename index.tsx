@@ -4,6 +4,7 @@ import AsyncStorage from '@react-native-async-storage/async-storage';
 import {name as appName} from './app.json';
 import App from './src/App';
 import pushNotificationCallback from './src/services';
+import {save} from './src/services/mmkv';
 
 /**
  * Note that this method MUST return a Promise.
@@ -37,8 +38,10 @@ const headlessNotificationListener = async ({notification}: any) => {
      * Here you could store the notifications in a external API.
      * I'm using AsyncStorage here as an example.
      */
+
+    save('notifications', notification);
+    // await AsyncStorage.setItem('@lastNotification', notification);
     await pushNotificationCallback(notification);
-    await AsyncStorage.setItem('@lastNotification', notification);
   }
 };
 

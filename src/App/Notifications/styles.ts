@@ -5,8 +5,7 @@ const {width} = Dimensions.get('screen');
 export default StyleSheet.create({
   container: {
     flex: 1,
-    justifyContent: 'center',
-    alignItems: 'center',
+    padding: 10,
   },
   permissionStatus: {
     marginBottom: 20,
@@ -16,7 +15,7 @@ export default StyleSheet.create({
     flex: 1,
     justifyContent: 'center',
     alignItems: 'center',
-    maxHeight: '30%',
+    maxHeight: '40%',
   },
   notificationWrapper: {
     flexDirection: 'column',
@@ -73,21 +72,5 @@ export default StyleSheet.create({
   },
   textInfo: {
     color: '#000',
-  },
-  appConfig: {
-    flex: 1,
-    width: '80%',
-    marginBottom: 10,
-    flexDirection: 'column',
-    justifyContent: 'flex-start',
-  },
-  appView: {
-    flex: 1,
-    backgroundColor: 'white',
-    padding: 10,
-    borderRadius: 10,
-  },
-  appViewTitle: {
-    marginVertical: 10,
   },
 });
