@@ -18,7 +18,7 @@ import AppConfig from './AppConfig';
 let interval: any = null;
 
 function Notifications() {
-  const [hasPermission, setHasPermission] = useState(true);
+  const [hasPermission, setHasPermission] = useState(false);
   const [lastNotification, setLastNotification] = useState<any>(null);
 
   const handleOnPressPermissionButton = async () => {
