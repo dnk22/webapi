@@ -6,8 +6,10 @@ import {InstalledApps} from 'react-native-launcher-kit';
 import ReactNativeModal from 'react-native-modal';
 import Form from './Form';
 import {ItemProps} from '../../../types';
+import {useCustomTheme} from '../../../theme';
 
 function AppConfig() {
+  const {colors} = useCustomTheme();
   const [apps, setApps] = useState([]);
   const [packageName, setPackageName] = useState<ItemProps>({
     packageName: '',
@@ -43,14 +45,16 @@ function AppConfig() {
     });
   };
 
-  const renderItem = ({item}) => <AppItem item={item} onPress={onItemPress} />;
+  const renderItem = ({item}) => (
+    <AppItem item={item} onPress={onItemPress} colors={colors} />
+  );
 
   return (
     <View style={styles.appConfig}>
-      <Text style={styles.appViewTitle}>
+      <Text style={[styles.appViewTitle, {color: colors.text}]}>
         Cài đặt ứng dụng muốn nhận thông báo
       </Text>
-      <View style={styles.appView}>
+      <View style={[styles.appView, {backgroundColor: colors.surface}]}>
         <FlatList
           data={apps}
           renderItem={renderItem}

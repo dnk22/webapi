@@ -5,20 +5,15 @@ import {
   Button,
   AppState,
   View,
-  FlatList,
-  ScrollView,
 } from 'react-native';
 import RNAndroidNotificationListener from 'react-native-android-notification-listener';
 import styles from './styles';
-import Notification from './Item';
-import {AppStorage, load} from '../../services/mmkv';
-import AsyncStorage from '@react-native-async-storage/async-storage';
 import Form from './Form';
 import AppConfig from './AppConfig';
+import Recent from './Recent';
 
 function Notifications() {
   const [hasPermission, setHasPermission] = useState(false);
-  const [lastNotification, setLastNotification] = useState<any>(null);
 
   const handleOnPressPermissionButton = async () => {
     /**
@@ -35,36 +30,6 @@ function Notifications() {
     }
   };
 
-  const handleCheckNotificationInterval = async () => {
-    const lastStoredNotification = await AsyncStorage.getItem(
-      '@lastNotification',
-    );
-    if (lastStoredNotification) {
-      /**
-       * As the notification is a JSON string,
-       * here I just parse it
-       */
-      setLastNotification(JSON.parse(lastStoredNotification));
-    }
-  };
-
-  useEffect(() => {
-    const listener = AppStorage.addOnValueChangedListener(changedKey => {
-      const notifications = AppStorage.getString('notifications');
-      if (notifications) {
-        setLastNotification(JSON.parse(notifications));
-      }
-    });
-    return () => {
-      listener.remove();
-    };
-  }, []);
-
-  useEffect(() => {
-    if (load('notifications')) {
-      setLastNotification(JSON.parse(load('notifications')));
-    }
-  }, [load('notifications')]);
 
   useEffect(() => {
     const listener = AppState.addEventListener('change', handleAppStateChange);
@@ -73,11 +38,6 @@ function Notifications() {
       listener.remove();
     };
   }, []);
-
-  const hasGroupedMessages =
-    lastNotification &&
-    lastNotification.groupedMessages &&
-    lastNotification.groupedMessages.length > 0;
 
   return (
     <SafeAreaView style={styles.container}>
@@ -101,25 +61,7 @@ function Notifications() {
       )}
       <Form />
       <AppConfig />
-      <>
-        <View style={styles.notificationsWrapper}>
-          <Text>Thông báo gần đây</Text>
-          {lastNotification && !hasGroupedMessages && (
-            <ScrollView style={styles.scrollView}>
-              <Notification {...lastNotification} />
-            </ScrollView>
-          )}
-          {lastNotification && hasGroupedMessages && (
-            <FlatList
-              data={lastNotification.groupedMessages}
-              keyExtractor={(_, index) => index.toString()}
-              renderItem={({item}) => (
-                <Notification app={lastNotification.app} {...item} />
-              )}
-            />
-          )}
-        </View>
-      </>
+      <Recent />
     </SafeAreaView>
   );
 }

@@ -11,6 +11,7 @@ import {
 } from 'react-native';
 import {AppStorage, load} from '../../../services/mmkv';
 import {ItemProps} from '../../../types';
+import {useCustomTheme} from '../../../theme';
 
 export default function Form({
   itemDetail,
@@ -19,6 +20,7 @@ export default function Form({
   itemDetail: ItemProps;
   onCloseModal: () => void;
 }) {
+  const {colors} = useCustomTheme();
   const [isEnabled, setIsEnabled] = useState(false);
   const toggleSwitch = () => setIsEnabled(!isEnabled);
   const [text, onChangeText] = useState('');
@@ -48,25 +50,33 @@ export default function Form({
 
   return (
     <TouchableWithoutFeedback onPress={Keyboard.dismiss}>
-      <View style={styles.container}>
-        <Text style={styles.title}>Cài đặt {itemDetail.appName}</Text>
+      <View style={[styles.container, {backgroundColor: colors.surface}]}>
+        <Text style={[styles.title, {color: colors.text}]}>
+          Cài đặt {itemDetail.appName}
+        </Text>
         <View style={styles.divider} />
         <View style={{width: '100%'}}>
           <View style={styles.formGroup}>
-            <Text>Thông báo</Text>
+            <Text style={{color: colors.text}}>Thông báo</Text>
             <Switch onValueChange={toggleSwitch} value={isEnabled} />
           </View>
           <View style={styles.formInput}>
-            <Text>Tên đăng nhập</Text>
+            <Text style={{color: colors.text}}>Tên đăng nhập</Text>
             <TextInput
-              style={styles.input}
+              style={[
+                styles.input,
+                {
+                  borderColor: colors.text,
+                  color: colors.text,
+                },
+              ]}
               onChangeText={onChangeText}
               value={text}
             />
           </View>
           <View style={styles.action}>
             <Pressable style={styles.button} onPress={onCancel}>
-              <Text>Hủy</Text>
+              <Text style={{color: colors.text}}>Hủy</Text>
             </Pressable>
             <Pressable
               style={[styles.button, {backgroundColor: '#007bff'}]}
