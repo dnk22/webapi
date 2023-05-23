@@ -73,4 +73,13 @@ export default StyleSheet.create({
   textInfo: {
     color: '#000',
   },
+  appSelect: {
+    flexDirection: 'row',
+    justifyContent: 'space-between',
+    alignItems: 'center',
+    marginVertical: 15,
+    padding: 20,
+    backgroundColor: 'white',
+    borderRadius: 10,
+  },
 });

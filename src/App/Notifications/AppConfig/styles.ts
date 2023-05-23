@@ -13,7 +13,7 @@ export default StyleSheet.create({
     borderRadius: 10,
   },
   appViewTitle: {
-    marginVertical: 10,
+    margin: 10,
   },
   appItem: {
     flexDirection: 'row',
@@ -28,5 +28,8 @@ export default StyleSheet.create({
     backgroundColor: 'white',
     borderRadius: 10,
     padding: 10,
+  },
+  appSelect: {
+    marginVertical: 10,
   },
 });

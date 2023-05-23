@@ -1,4 +1,4 @@
-import {FlatList, Text, View} from 'react-native';
+import {FlatList, Pressable, Text, View} from 'react-native';
 import styles from './styles';
 import {memo, useEffect, useState} from 'react';
 import AppItem from './AppItem';
@@ -52,7 +52,7 @@ function AppConfig() {
   return (
     <View style={styles.appConfig}>
       <Text style={[styles.appViewTitle, {color: colors.text}]}>
-        Cài đặt ứng dụng muốn nhận thông báo
+        Chọn ứng dụng muốn nhận thông báo
       </Text>
       <View style={[styles.appView, {backgroundColor: colors.surface}]}>
         <FlatList

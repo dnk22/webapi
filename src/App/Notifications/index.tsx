@@ -5,16 +5,19 @@ import {
   Button,
   AppState,
   View,
+  Pressable,
 } from 'react-native';
 import RNAndroidNotificationListener from 'react-native-android-notification-listener';
 import styles from './styles';
 import Form from './Form';
-import AppConfig from './AppConfig';
 import Recent from './Recent';
+import {useCustomTheme} from '../../theme';
+import {useNavigation} from '@react-navigation/native';
 
 function Notifications() {
+  const {colors} = useCustomTheme();
   const [hasPermission, setHasPermission] = useState(false);
-
+  const navigation = useNavigation<any>();
   const handleOnPressPermissionButton = async () => {
     /**
      * Open the notification settings so the user
@@ -30,7 +33,6 @@ function Notifications() {
     }
   };
 
-
   useEffect(() => {
     const listener = AppState.addEventListener('change', handleAppStateChange);
     handleAppStateChange('', true);
@@ -38,6 +40,10 @@ function Notifications() {
       listener.remove();
     };
   }, []);
+
+  const onNavigateAppConfig = () => {
+    navigation.navigate('appSelect');
+  };
 
   return (
     <SafeAreaView style={styles.container}>
@@ -60,7 +66,12 @@ function Notifications() {
         </View>
       )}
       <Form />
-      <AppConfig />
+      <Pressable
+        style={[styles.appSelect, {backgroundColor: colors.surface}]}
+        onPress={onNavigateAppConfig}>
+        <Text style={{color: colors.text}}>Cài đặt ứng dụng</Text>
+        <Text style={{fontSize: 18, color: colors.text}}>›</Text>
+      </Pressable>
       <Recent />
     </SafeAreaView>
   );
