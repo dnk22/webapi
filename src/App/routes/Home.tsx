@@ -13,7 +13,7 @@ function HomeNavigation() {
   return (
     <Tab.Navigator
       screenOptions={{
-        tabBarShowLabel: false,
+        // tabBarShowLabel: false,
         tabBarStyle: {
           // backgroundColor: colors.surface,
         },
@@ -22,10 +22,14 @@ function HomeNavigation() {
         name="Notification"
         options={{
           title: 'Thông báo',
-          tabBarIcon: () => (
+          tabBarIcon: props => (
             <Image
               source={require('../assets/notification.png')}
-              style={{width: 20, height: 20, tintColor: 'white'}}
+              style={{
+                width: props.focused ? 24 : 20,
+                height: props.focused ? 24 : 20,
+                tintColor: 'white',
+              }}
             />
           ),
         }}
@@ -35,10 +39,14 @@ function HomeNavigation() {
         name="Image"
         options={{
           title: 'Chọn ảnh',
-          tabBarIcon: () => (
+          tabBarIcon: props => (
             <Image
               source={require('../assets/image-gallery.png')}
-              style={{width: 20, height: 20, tintColor: 'white'}}
+              style={{
+                width: props.focused ? 24 : 20,
+                height: props.focused ? 24 : 20,
+                tintColor: 'white',
+              }}
             />
           ),
         }}
@@ -48,10 +56,14 @@ function HomeNavigation() {
         name="Support"
         options={{
           title: 'Hỗ trợ',
-          tabBarIcon: () => (
+          tabBarIcon: props => (
             <Image
               source={require('../assets/support.png')}
-              style={{width: 20, height: 20, tintColor: 'white'}}
+              style={{
+                width: props.focused ? 24 : 20,
+                height: props.focused ? 24 : 20,
+                tintColor: 'white',
+              }}
             />
           ),
         }}

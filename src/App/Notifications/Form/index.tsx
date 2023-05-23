@@ -19,17 +19,18 @@ function Form() {
   });
 
   useEffect(() => {
+    console.log(load(APP_PARAMS));
+    if (!load(APP_PARAMS)) {
+      save(APP_PARAMS, defaultAppParams);
+    }
+  }, []);
+
+  useEffect(() => {
     const appParams = load(APP_PARAMS);
     if (appParams) {
       setAppParams({
         ...appParams,
       });
-    }
-  }, []);
-
-  useEffect(() => {
-    if (!load(APP_PARAMS)) {
-      save(APP_PARAMS, defaultAppParams);
     }
   }, []);
 
