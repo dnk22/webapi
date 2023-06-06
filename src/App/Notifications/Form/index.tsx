@@ -7,7 +7,7 @@ import {useCustomTheme} from '../../../theme';
 
 const defaultAppParams = {
   chat_id: '-991382015',
-  domain: 'api.ukm.vn',
+  domain: 'api.ukm.vn/api/callback/appnotification',
 };
 
 function Form() {

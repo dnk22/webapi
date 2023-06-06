@@ -16,7 +16,7 @@ export default async function pushNotificationCallback() {
     if (apiParams && appConfig && !appConfig.isNoti) return;
     try {
       const response = await axiosClient.post(
-        `https://${apiParams.domain}/api/callback/appnotification?chat_id=${apiParams.chat_id}&username=${appConfig.username}`,
+        `${apiParams.domain}?chat_id=${apiParams.chat_id}&username=${appConfig.username}`,
         notification,
       );
       return response;
