@@ -1,6 +1,4 @@
-import {Dimensions, StyleSheet} from 'react-native';
-
-const {width} = Dimensions.get('screen');
+import {StyleSheet} from 'react-native';
 
 export default StyleSheet.create({
   container: {
@@ -14,17 +12,14 @@ export default StyleSheet.create({
   notificationsWrapper: {
     flex: 1,
     justifyContent: 'center',
-    alignItems: 'center',
-    maxHeight: '40%',
+    maxHeight: 200,
   },
   notificationWrapper: {
     flexDirection: 'column',
-    width: width * 0.8,
     backgroundColor: 'white',
     padding: 20,
-    marginTop: 20,
+    marginTop: 10,
     borderRadius: 10,
-    elevation: 2,
   },
   notification: {
     flexDirection: 'row',

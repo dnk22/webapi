@@ -13,6 +13,7 @@ import Form from './Form';
 import Recent from './Recent';
 import {useCustomTheme} from '../../theme';
 import {useNavigation} from '@react-navigation/native';
+import APIRecent from './APIRecent';
 
 function Notifications() {
   const {colors} = useCustomTheme();
@@ -73,6 +74,7 @@ function Notifications() {
         <Text style={{fontSize: 18, color: colors.text}}>›</Text>
       </Pressable>
       <Recent />
+      <APIRecent />
     </SafeAreaView>
   );
 }

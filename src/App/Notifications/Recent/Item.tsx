@@ -36,6 +36,7 @@ const Notification: React.FC<INotificationProps> = ({
   iconLarge,
   colors,
 }) => {
+  const dateTime = time ? new Date(+time).toLocaleString() : null;
   return (
     <View
       style={[styles.notificationWrapper, {backgroundColor: colors.surface}]}>
@@ -81,7 +82,7 @@ const Notification: React.FC<INotificationProps> = ({
               style={[
                 styles.textInfo,
                 {color: colors.text},
-              ]}>{`time: ${time}`}</Text>
+              ]}>{`time: ${dateTime}`}</Text>
           )}
           {!!titleBig && (
             <Text

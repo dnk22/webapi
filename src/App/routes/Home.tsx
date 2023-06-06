@@ -35,7 +35,7 @@ function HomeNavigation() {
         }}
         component={Notifications}
       />
-      <Tab.Screen
+      {/* <Tab.Screen
         name="Image"
         options={{
           title: 'Chọn ảnh',
@@ -51,7 +51,7 @@ function HomeNavigation() {
           ),
         }}
         component={ImagePicker}
-      />
+      /> */}
       <Tab.Screen
         name="Support"
         options={{
