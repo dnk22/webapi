@@ -5,7 +5,7 @@ import AppNavigators from './routes';
 
 function App() {
   const isDarkMode = useColorScheme() === 'dark';
-  const theme = MyAppTheme['dark'];
+  const theme = MyAppTheme[isDarkMode ? 'dark' : 'default'];
 
   return (
     <NavigationContainer theme={theme}>

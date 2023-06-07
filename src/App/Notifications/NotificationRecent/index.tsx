@@ -5,7 +5,7 @@ import {useEffect, useState} from 'react';
 import {AppStorage, load} from '../../../services/mmkv';
 import {useCustomTheme} from '../../../theme';
 
-function Recent() {
+function NotificationRecent() {
   const [lastNotification, setLastNotification] = useState<any>(null);
   const {colors} = useCustomTheme();
 
@@ -30,16 +30,25 @@ function Recent() {
   useEffect(() => {
     const data = lastNotification;
     delete data?.icon;
-    console.log(data, 'lastNotification');
   }, [lastNotification]);
 
   return (
     <View style={styles.notificationsWrapper}>
       <Text style={{color: colors.text}}>Thông báo gần đây</Text>
-      <ScrollView style={styles.scrollView}>
-        <Notification {...lastNotification} colors={colors} />
-      </ScrollView>
+      {!lastNotification ? (
+        <View
+          style={[
+            styles.notificationWrapper,
+            {backgroundColor: colors.surface, alignItems: 'center'},
+          ]}>
+          <Text>Không có thông báo nào</Text>
+        </View>
+      ) : (
+        <ScrollView style={styles.scrollView}>
+          <Notification {...lastNotification} colors={colors} is />
+        </ScrollView>
+      )}
     </View>
   );
 }
-export default Recent;
+export default NotificationRecent;

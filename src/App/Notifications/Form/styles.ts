@@ -7,10 +7,14 @@ export default StyleSheet.create({
     padding: 5,
   },
   action: {
+    borderTopColor: '#EEEEEE',
+    borderTopWidth: 0.5,
     marginHorizontal: 10,
     flexDirection: 'row',
     justifyContent: 'flex-end',
     columnGap: 10,
+    marginTop: 10,
+    paddingTop: 10,
   },
   button: {
     width: 70,
@@ -22,7 +26,27 @@ export default StyleSheet.create({
     borderColor: '#007bff',
   },
   primary: {
-    backgroundColor: '#007bff',
     color: 'white',
+  },
+  itemRow: {
+    marginBottom: 5,
+  },
+  itemRowHeader: {
+    flexDirection: 'row',
+    justifyContent: 'space-between',
+    alignItems: 'center',
+    paddingVertical: 8,
+    paddingHorizontal: 10,
+  },
+  itemRowTitle: {
+    fontSize: 16,
+    fontWeight: '700',
+  },
+  itemRowInput: {
+    height: 40,
+    marginHorizontal: 10,
+    borderWidth: 0.5,
+    padding: 10,
+    borderRadius: 10,
   },
 });

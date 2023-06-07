@@ -6,22 +6,26 @@ import {useCustomTheme} from '../../../theme';
 import {RECENT_API_CALLED} from '../../../constants';
 
 function APIRecent() {
-  const [apiName, setApiName] = useState<any>(null);
+  const [apiResponse, setApiResponse] = useState<any>(null);
   const {colors} = useCustomTheme();
 
   useEffect(() => {
     const listener = AppStorage.addOnValueChangedListener(changedKey => {
-      const apiName = AppStorage.getString(RECENT_API_CALLED);
-      if (apiName) {
-        setApiName(JSON.parse(apiName));
+      const apiResponse = AppStorage.getString(RECENT_API_CALLED);
+      if (apiResponse) {
+        setApiResponse(JSON.parse(JSON.parse(apiResponse)));
       }
     });
     return () => {
       listener.remove();
     };
   }, []);
+
   useEffect(() => {
-    setApiName(AppStorage.getString(RECENT_API_CALLED));
+    const apiCall = AppStorage.getString(RECENT_API_CALLED);
+    if (apiCall) {
+      setApiResponse(JSON.parse(JSON.parse(apiCall)));
+    }
   }, []);
 
   return (
@@ -33,7 +37,21 @@ function APIRecent() {
             styles.notificationWrapper,
             {backgroundColor: colors.surface},
           ]}>
-          <Text style={{color: colors.text}}>{apiName}</Text>
+          {!apiResponse ? (
+            <Text>Không có data</Text>
+          ) : (
+            <>
+              <Text style={{color: colors.text}}>
+                Thời gian : {apiResponse?.time}
+              </Text>
+              <Text style={{color: colors.text}}>
+                Trạng thái : {apiResponse?.status}
+              </Text>
+              <Text style={{color: colors.text}}>
+                Nội dung : {apiResponse?.content}
+              </Text>
+            </>
+          )}
         </View>
       </ScrollView>
     </View>

@@ -10,16 +10,16 @@ export default StyleSheet.create({
     fontSize: 18,
   },
   notificationsWrapper: {
-    flex: 1,
     justifyContent: 'center',
-    maxHeight: 200,
   },
   notificationWrapper: {
     flexDirection: 'column',
     backgroundColor: 'white',
     padding: 20,
-    marginTop: 10,
+    paddingVertical: 10,
+    marginVertical: 10,
     borderRadius: 10,
+    rowGap: 10,
   },
   notification: {
     flexDirection: 'row',
@@ -29,6 +29,7 @@ export default StyleSheet.create({
   },
   notificationInfoWrapper: {
     flex: 1,
+    rowGap: 5,
   },
   notificationIconWrapper: {
     backgroundColor: '#aaa',
@@ -47,7 +48,7 @@ export default StyleSheet.create({
   notificationImageWrapper: {
     width: 50,
     height: 50,
-    borderRadius: 25,
+    borderRadius: 30,
     alignItems: 'center',
     marginRight: 15,
     justifyContent: 'center',
@@ -56,6 +57,7 @@ export default StyleSheet.create({
     width: 40,
     height: 40,
     resizeMode: 'contain',
+    borderRadius: 30,
   },
   buttonWrapper: {
     justifyContent: 'center',
@@ -63,7 +65,7 @@ export default StyleSheet.create({
     paddingVertical: 20,
   },
   scrollView: {
-    flex: 1,
+    maxHeight: 200,
   },
   textInfo: {
     color: '#000',

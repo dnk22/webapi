@@ -66,30 +66,30 @@ const Notification: React.FC<INotificationProps> = ({
             style={[
               styles.textInfo,
               {color: colors.text},
-            ]}>{`app: ${app}`}</Text>
+            ]}>{`App: ${app}`}</Text>
           <Text
             style={[
               styles.textInfo,
               {color: colors.text},
-            ]}>{`title: ${title}`}</Text>
+            ]}>{`Tiêu đề: ${title}`}</Text>
           <Text
             style={[
               styles.textInfo,
               {color: colors.text},
-            ]}>{`text: ${text}`}</Text>
+            ]}>{`Nội dung: ${text}`}</Text>
           {!!time && (
             <Text
               style={[
                 styles.textInfo,
                 {color: colors.text},
-              ]}>{`time: ${dateTime}`}</Text>
+              ]}>{`Thời gian: ${dateTime}`}</Text>
           )}
           {!!titleBig && (
             <Text
               style={[
                 styles.textInfo,
                 {color: colors.text},
-              ]}>{`titleBig: ${titleBig}`}</Text>
+              ]}>{`Tiêu đề lớn: ${titleBig}`}</Text>
           )}
           {!!subText && (
             <Text

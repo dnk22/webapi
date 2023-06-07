@@ -1,26 +1,51 @@
-import {load, save} from './mmkv';
+import {AppStorage, load, save} from './mmkv';
 import {APP_PARAMS, RECENT_API_CALLED} from '../constants';
 import axiosClient from './axios';
 
 export default async function pushNotificationCallback() {
   const lastStoredNotification = load('notifications');
   if (lastStoredNotification) {
-    const notification = JSON.parse(lastStoredNotification);
+    /** check domain */
+    let URL = AppStorage.getString('domain');
+    if (!URL) return;
 
+    /** chat Id */
+    const chatIdSetting = JSON.parse(AppStorage.getString('chatId') || '');
+    URL = URL + `?chat_id=${chatIdSetting.isActive ? chatIdSetting.value : ''}`;
+
+    /** get notification data */
+    const notification = JSON.parse(lastStoredNotification);
     delete notification.iconLarge;
     delete notification.icon;
     delete notification.image;
 
-    const apiParams = load(APP_PARAMS);
+    /** check app settings */
     const appConfig = load(notification.app);
-    if (apiParams && appConfig && !appConfig.isNoti) return;
-    try {
-      const apiURL = `${apiParams.domain}?chat_id=${apiParams.chat_id}&username=${appConfig?.username}`;
-      const response = await axiosClient.post(apiURL, notification);
-      save(RECENT_API_CALLED, apiParams.domain);
-      return response;
-    } catch (error) {
-      console.log(error);
-    }
+    URL = URL + `&username=${appConfig?.username || ''}`;
+    if (appConfig === null || !appConfig.isNoti) return;
+
+    const responseData = {
+      status: 0,
+      content: '',
+      time: new Date().toLocaleString(),
+    };
+    // call api
+    const response = await axiosClient
+      .post(URL, notification)
+      .then(res => {
+        responseData.status = res.status;
+        responseData.content = String(res.data);
+      })
+      .catch(function (error) {
+        if (error.response) {
+          // The request was made and the server responded with a status code
+          // that falls out of the range of 2xx
+          responseData.status = error.response.status;
+          responseData.content =
+            'Lỗi chưa xác định' || JSON.stringify(error.response.data);
+        }
+      });
+    save(RECENT_API_CALLED, JSON.stringify(responseData));
+    return response;
   }
 }

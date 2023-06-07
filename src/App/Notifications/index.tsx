@@ -10,10 +10,10 @@ import {
 import RNAndroidNotificationListener from 'react-native-android-notification-listener';
 import styles from './styles';
 import Form from './Form';
-import Recent from './Recent';
 import {useCustomTheme} from '../../theme';
 import {useNavigation} from '@react-navigation/native';
 import APIRecent from './APIRecent';
+import NotificationRecent from './NotificationRecent';
 
 function Notifications() {
   const {colors} = useCustomTheme();
@@ -73,7 +73,7 @@ function Notifications() {
         <Text style={{color: colors.text}}>Cài đặt ứng dụng</Text>
         <Text style={{fontSize: 18, color: colors.text}}>›</Text>
       </Pressable>
-      <Recent />
+      <NotificationRecent />
       <APIRecent />
     </SafeAreaView>
   );
