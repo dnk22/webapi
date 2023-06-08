@@ -27,11 +27,11 @@ export default async function pushNotificationCallback(data: any) {
       content: '',
       time: new Date().toLocaleString(),
     };
-    const requestData = {
+    const requestData = JSON.stringify({
       ...notification,
       chat_id: chatIdSetting.isActive ? chatIdSetting.value : '',
       username: appConfig?.username || '',
-    };
+    });
     // call api
     const response = await axiosClient
       .post(URL, requestData)
