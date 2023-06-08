@@ -1,4 +1,4 @@
-import {Image, Text, View} from 'react-native';
+import {Image, ScrollView, Text, View} from 'react-native';
 import styles from '../styles';
 
 interface INotificationProps {
@@ -38,7 +38,7 @@ const Notification: React.FC<INotificationProps> = ({
 }) => {
   const dateTime = time ? new Date(+time).toLocaleString() : null;
   return (
-    <View
+    <ScrollView
       style={[styles.notificationWrapper, {backgroundColor: colors.surface}]}>
       <View style={styles.notification}>
         <View style={styles.imagesWrapper}>
@@ -62,80 +62,63 @@ const Notification: React.FC<INotificationProps> = ({
           )}
         </View>
         <View style={styles.notificationInfoWrapper}>
-          <Text
-            style={[
-              styles.textInfo,
-              {color: colors.text},
-            ]}>{`App: ${app}`}</Text>
-          <Text
-            style={[
-              styles.textInfo,
-              {color: colors.text},
-            ]}>{`Tiêu đề: ${title}`}</Text>
-          <Text
-            style={[
-              styles.textInfo,
-              {color: colors.text},
-            ]}>{`Nội dung: ${text}`}</Text>
+          <View style={styles.row}>
+            <Text style={[styles.rowTitle, {color: colors.text}]}>App </Text>
+            <Text style={[styles.rowValue, {color: colors.text}]}>{app}</Text>
+          </View>
+          <View style={styles.row}>
+            <Text style={[styles.rowTitle, {color: colors.text}]}>Tiêu đề</Text>
+            <Text style={[styles.rowValue, {color: colors.text}]}>{title}</Text>
+          </View>
+          <View style={styles.row}>
+            <Text style={[styles.rowTitle, {color: colors.text}]}>
+              Nội dung
+            </Text>
+            <Text style={[styles.rowValue, {color: colors.text}]}>{text}</Text>
+          </View>
           {!!time && (
-            <Text
-              style={[
-                styles.textInfo,
-                {color: colors.text},
-              ]}>{`Thời gian: ${dateTime}`}</Text>
+            <View style={styles.row}>
+              <Text style={[styles.rowTitle, {color: colors.text}]}>
+                Thời gian
+              </Text>
+              <Text style={[styles.rowValue, {color: colors.text}]}>
+                {dateTime}
+              </Text>
+            </View>
           )}
           {!!titleBig && (
-            <Text
-              style={[
-                styles.textInfo,
-                {color: colors.text},
-              ]}>{`Tiêu đề lớn: ${titleBig}`}</Text>
+            <View style={styles.row}>
+              <Text style={[styles.rowTitle, {color: colors.text}]}>
+                Tiêu đề lớn
+              </Text>
+              <Text style={[styles.rowValue, {color: colors.text}]}>
+                {titleBig}
+              </Text>
+            </View>
           )}
           {!!subText && (
-            <Text
-              style={[
-                styles.textInfo,
-                {color: colors.text},
-              ]}>{`subText: ${subText}`}</Text>
+            <View style={styles.row}>
+              <Text style={[styles.rowTitle, {color: colors.text}]}>
+                Tiêu đề phụ
+              </Text>
+              <Text style={[styles.rowValue, {color: colors.text}]}>
+                {subText}
+              </Text>
+            </View>
           )}
           {!!summaryText && (
-            <Text
-              style={[
-                styles.textInfo,
-                {color: colors.text},
-              ]}>{`summaryText: ${summaryText}`}</Text>
-          )}
-          {!!bigText && (
-            <Text
-              style={[
-                styles.textInfo,
-                {color: colors.text},
-              ]}>{`bigText: ${bigText}`}</Text>
-          )}
-          {!!audioContentsURI && (
-            <Text
-              style={[
-                styles.textInfo,
-                {color: colors.text},
-              ]}>{`audioContentsURI: ${audioContentsURI}`}</Text>
-          )}
-          {!!imageBackgroundURI && (
-            <Text
-              style={[
-                styles.textInfo,
-                {color: colors.text},
-              ]}>{`imageBackgroundURI: ${imageBackgroundURI}`}</Text>
-          )}
-          {!!extraInfoText && (
-            <Text
-              style={[
-                styles.textInfo,
-                {color: colors.text},
-              ]}>{`extraInfoText: ${extraInfoText}`}</Text>
+            <View style={styles.row}>
+              <Text style={[styles.rowTitle, {color: colors.text}]}>
+                summaryText
+              </Text>
+              <Text style={[styles.rowValue, {color: colors.text}]}>
+                {summaryText}
+              </Text>
+            </View>
           )}
         </View>
       </View>
-    </View>
+    </ScrollView>
   );
 };
 export default Notification;

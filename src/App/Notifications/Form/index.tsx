@@ -7,7 +7,7 @@ import {useCustomTheme} from '../../../theme';
 const defaultDomain = 'https://api.ukm.vn/api/callback/appnotification';
 const defaultChatId = {
   isActive: false,
-  value: '',
+  value: '-991382015',
 };
 function Form() {
   const {colors} = useCustomTheme();

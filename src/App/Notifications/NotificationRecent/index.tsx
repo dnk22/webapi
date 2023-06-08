@@ -44,9 +44,7 @@ function NotificationRecent() {
           <Text>Không có thông báo nào</Text>
         </View>
       ) : (
-        <ScrollView style={styles.scrollView}>
-          <Notification {...lastNotification} colors={colors} is />
-        </ScrollView>
+        <Notification {...lastNotification} colors={colors} is />
       )}
     </View>
   );

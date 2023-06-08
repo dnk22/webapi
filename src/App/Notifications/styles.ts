@@ -13,6 +13,7 @@ export default StyleSheet.create({
     justifyContent: 'center',
   },
   notificationWrapper: {
+    maxHeight: 300,
     flexDirection: 'column',
     backgroundColor: 'white',
     padding: 20,
@@ -78,5 +79,15 @@ export default StyleSheet.create({
     padding: 20,
     backgroundColor: 'white',
     borderRadius: 10,
+  },
+  row: {
+    flexDirection: 'row',
+  },
+  rowTitle: {
+    fontWeight: '700',
+    flex: 0.4,
+  },
+  rowValue: {
+    flex: 1,
   },
 });
