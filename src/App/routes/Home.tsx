@@ -28,7 +28,7 @@ function HomeNavigation() {
               style={{
                 width: props.focused ? 24 : 20,
                 height: props.focused ? 24 : 20,
-                tintColor: 'white',
+                tintColor: colors.text,
               }}
             />
           ),
@@ -45,7 +45,7 @@ function HomeNavigation() {
               style={{
                 width: props.focused ? 24 : 20,
                 height: props.focused ? 24 : 20,
-                tintColor: 'white',
+                tintColor: colors.text,
               }}
             />
           ),
@@ -62,7 +62,7 @@ function HomeNavigation() {
               style={{
                 width: props.focused ? 24 : 20,
                 height: props.focused ? 24 : 20,
-                tintColor: 'white',
+                tintColor: colors.text,
               }}
             />
           ),

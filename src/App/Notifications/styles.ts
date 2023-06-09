@@ -13,7 +13,6 @@ export default StyleSheet.create({
     justifyContent: 'center',
   },
   notificationWrapper: {
-    maxHeight: 300,
     flexDirection: 'column',
     backgroundColor: 'white',
     padding: 20,

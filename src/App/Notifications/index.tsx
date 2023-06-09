@@ -6,6 +6,7 @@ import {
   AppState,
   View,
   Pressable,
+  ScrollView,
 } from 'react-native';
 import RNAndroidNotificationListener from 'react-native-android-notification-listener';
 import styles from './styles';
@@ -48,33 +49,35 @@ function Notifications() {
 
   return (
     <SafeAreaView style={styles.container}>
-      {!hasPermission && (
-        <View style={styles.buttonWrapper}>
-          <Text
-            style={[
-              styles.permissionStatus,
-              {color: hasPermission ? 'green' : 'red'},
-            ]}>
-            {hasPermission
-              ? 'Đã cho phép nhận thông báo'
-              : 'Chưa cho phép nhận thông báo'}
-          </Text>
-          <Button
-            title="Mở cài đặt"
-            onPress={handleOnPressPermissionButton}
-            disabled={hasPermission}
-          />
-        </View>
-      )}
-      <Form />
-      <Pressable
-        style={[styles.appSelect, {backgroundColor: colors.surface}]}
-        onPress={onNavigateAppConfig}>
-        <Text style={{color: colors.text}}>Cài đặt ứng dụng</Text>
-        <Text style={{fontSize: 18, color: colors.text}}>›</Text>
-      </Pressable>
-      <NotificationRecent />
-      <APIRecent />
+      <ScrollView>
+        {!hasPermission && (
+          <View style={styles.buttonWrapper}>
+            <Text
+              style={[
+                styles.permissionStatus,
+                {color: hasPermission ? 'green' : 'red'},
+              ]}>
+              {hasPermission
+                ? 'Đã cho phép nhận thông báo'
+                : 'Chưa cho phép nhận thông báo'}
+            </Text>
+            <Button
+              title="Mở cài đặt"
+              onPress={handleOnPressPermissionButton}
+              disabled={hasPermission}
+            />
+          </View>
+        )}
+        <Form />
+        <Pressable
+          style={[styles.appSelect, {backgroundColor: colors.surface}]}
+          onPress={onNavigateAppConfig}>
+          <Text style={{color: colors.text}}>Cài đặt ứng dụng</Text>
+          <Text style={{fontSize: 18, color: colors.text}}>›</Text>
+        </Pressable>
+        <NotificationRecent />
+        <APIRecent />
+      </ScrollView>
     </SafeAreaView>
   );
 }
